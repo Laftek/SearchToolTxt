@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WpfBlazorSearchTool")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6775f251b2a3861b67e2bdd76813151d15cc97a5")]
 [assembly: System.Reflection.AssemblyProductAttribute("WpfBlazorSearchTool")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WpfBlazorSearchTool")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

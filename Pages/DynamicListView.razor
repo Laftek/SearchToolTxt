@@ -1,0 +1,54 @@
+<div class="border p-3 rounded">
+    <h6>@Title</h6>
+    @if (Items != null)
+    {
+        @foreach (var item in Items)
+        {
+            <div class="input-group input-group-sm mb-1">
+                <input type="text" class="form-control" value="@item" disabled />
+                <button class="btn btn-outline-danger" type="button" @onclick="() => RemoveItem(item)" disabled="@IsDisabled" style="min-width: 55px;">X</button>
+            </div>
+        }
+    }
+
+    <div class="input-group input-group-sm mt-2">
+        <input type="text" class="form-control" @bind="_newItem" placeholder="Add new item..." @onkeydown="HandleKeyDown" disabled="@IsDisabled" />
+        <button class="btn btn-outline-success" type="button" @onclick="AddItem" disabled="@IsDisabled" style="min-width: 55px;">Add</button>
+    </div>
+</div>
+
+
+@code {
+    [Parameter]
+    public string Title { get; set; } = "Items";
+
+    [Parameter]
+    public List<string>? Items { get; set; }
+
+    [Parameter]
+    public bool IsDisabled { get; set; }
+
+    private string _newItem = string.Empty;
+
+    private void AddItem()
+    {
+        if (!string.IsNullOrWhiteSpace(_newItem) && Items != null && !Items.Contains(_newItem))
+        {
+            Items.Add(_newItem);
+            _newItem = string.Empty;
+        }
+    }
+
+    private void RemoveItem(string item)
+    {
+        Items?.Remove(item);
+    }
+    
+    private void HandleKeyDown(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            AddItem();
+        }
+    }
+}

@@ -1,0 +1,702 @@
+{
+  "Version": 1,
+  "Hash": "iLBdzo5mxfoDTT/Lj+zxEL/77rn6ZQv6dL82cP4gT1A=",
+  "Source": "WpfBlazorSearchTool",
+  "BasePath": "/",
+  "Mode": "Root",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "WpfBlazorSearchTool\\wwwroot",
+      "Source": "WpfBlazorSearchTool",
+      "ContentRoot": "C:\\EPLAN\\SearchToolWPF\\WpfBlazorSearchTool\\wwwroot\\",
+      "BasePath": "/",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\EPLAN\\SearchToolWPF\\WpfBlazorSearchTool\\obj\\Debug\\net9.0-windows\\compressed\\9007khu3x2-n09lemrsnz.gz",
+      "SourceId": "WpfBlazorSearchTool",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\EPLAN\\SearchToolWPF\\WpfBlazorSearchTool\\obj\\Debug\\net9.0-windows\\compressed\\",
+      "BasePath": "/",
+      "RelativePath": "index#[.{fingerprint=n09lemrsnz}]?.html.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\EPLAN\\SearchToolWPF\\WpfBlazorSearchTool\\wwwroot\\index.html",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "vdwxfi9lcv",
+      "Integrity": "M+kieE4x1Ckyx+9bbISNEMt7Ms+wKW0k8AWoljemrd0=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\EPLAN\\SearchToolWPF\\WpfBlazorSearchTool\\wwwroot\\index.html"
+    },
+    {
+      "Identity": "C:\\EPLAN\\SearchToolWPF\\WpfBlazorSearchTool\\obj\\Debug\\net9.0-windows\\compressed\\y0degv16xn-mcyetm23yi.gz",
+      "SourceId": "WpfBlazorSearchTool",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\EPLAN\\SearchToolWPF\\WpfBlazorSearchTool\\obj\\Debug\\net9.0-windows\\compressed\\",
+      "BasePath": "/",
+      "RelativePath": "css/app#[.{fingerprint=mcyetm23yi}]?.css.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\EPLAN\\SearchToolWPF\\WpfBlazorSearchTool\\wwwroot\\css\\app.css",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "xhk73bxfyu",
+      "Integrity": "hSKYeCQUq+14AYwf7jLyARikEFQ76kee+gBiE2l2EQE=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\EPLAN\\SearchToolWPF\\WpfBlazorSearchTool\\wwwroot\\css\\app.css"
+    },
+    {
+      "Identity": "C:\\EPLAN\\SearchToolWPF\\WpfBlazorSearchTool\\wwwroot\\css\\app.css",
+      "SourceId": "WpfBlazorSearchTool",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\EPLAN\\SearchToolWPF\\WpfBlazorSearchTool\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "css/app#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "mcyetm23yi",
+      "Integrity": "ZtquCK8L/TtdFfRu+gVRnU7w7VMJ/3KaO9g4frBEjQc=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\app.css"
+    },
+    {
+      "Identity": "C:\\EPLAN\\SearchToolWPF\\WpfBlazorSearchTool\\wwwroot\\index.html",
+      "SourceId": "WpfBlazorSearchTool",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\EPLAN\\SearchToolWPF\\WpfBlazorSearchTool\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "index#[.{fingerprint}]?.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "n09lemrsnz",
+      "Integrity": "GUmXBM9yN9vJ6cRyjM9BvoXj079+YmZCboe2HOJ0BF0=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\index.html"
+    }
+  ],
+  "Endpoints": [
+    {
+      "Route": "css/app.css",
+      "AssetFile": "C:\\EPLAN\\SearchToolWPF\\WpfBlazorSearchTool\\obj\\Debug\\net9.0-windows\\compressed\\y0degv16xn-mcyetm23yi.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000562113547"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1778"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"hSKYeCQUq+14AYwf7jLyARikEFQ76kee+gBiE2l2EQE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 09 Jun 2025 08:35:08 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"ZtquCK8L/TtdFfRu+gVRnU7w7VMJ/3KaO9g4frBEjQc=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-ZtquCK8L/TtdFfRu+gVRnU7w7VMJ/3KaO9g4frBEjQc="
+        }
+      ]
+    },
+    {
+      "Route": "css/app.css",
+      "AssetFile": "C:\\EPLAN\\SearchToolWPF\\WpfBlazorSearchTool\\wwwroot\\css\\app.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3717"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ZtquCK8L/TtdFfRu+gVRnU7w7VMJ/3KaO9g4frBEjQc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 09 Jun 2025 08:35:08 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-ZtquCK8L/TtdFfRu+gVRnU7w7VMJ/3KaO9g4frBEjQc="
+        }
+      ]
+    },
+    {
+      "Route": "css/app.css.gz",
+      "AssetFile": "C:\\EPLAN\\SearchToolWPF\\WpfBlazorSearchTool\\obj\\Debug\\net9.0-windows\\compressed\\y0degv16xn-mcyetm23yi.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1778"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"hSKYeCQUq+14AYwf7jLyARikEFQ76kee+gBiE2l2EQE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 09 Jun 2025 08:35:08 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-hSKYeCQUq+14AYwf7jLyARikEFQ76kee+gBiE2l2EQE="
+        }
+      ]
+    },
+    {
+      "Route": "css/app.mcyetm23yi.css",
+      "AssetFile": "C:\\EPLAN\\SearchToolWPF\\WpfBlazorSearchTool\\obj\\Debug\\net9.0-windows\\compressed\\y0degv16xn-mcyetm23yi.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000562113547"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1778"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"hSKYeCQUq+14AYwf7jLyARikEFQ76kee+gBiE2l2EQE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 09 Jun 2025 08:35:08 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"ZtquCK8L/TtdFfRu+gVRnU7w7VMJ/3KaO9g4frBEjQc=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "mcyetm23yi"
+        },
+        {
+          "Name": "label",
+          "Value": "css/app.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-ZtquCK8L/TtdFfRu+gVRnU7w7VMJ/3KaO9g4frBEjQc="
+        }
+      ]
+    },
+    {
+      "Route": "css/app.mcyetm23yi.css",
+      "AssetFile": "C:\\EPLAN\\SearchToolWPF\\WpfBlazorSearchTool\\wwwroot\\css\\app.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3717"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ZtquCK8L/TtdFfRu+gVRnU7w7VMJ/3KaO9g4frBEjQc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 09 Jun 2025 08:35:08 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "mcyetm23yi"
+        },
+        {
+          "Name": "label",
+          "Value": "css/app.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-ZtquCK8L/TtdFfRu+gVRnU7w7VMJ/3KaO9g4frBEjQc="
+        }
+      ]
+    },
+    {
+      "Route": "css/app.mcyetm23yi.css.gz",
+      "AssetFile": "C:\\EPLAN\\SearchToolWPF\\WpfBlazorSearchTool\\obj\\Debug\\net9.0-windows\\compressed\\y0degv16xn-mcyetm23yi.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1778"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"hSKYeCQUq+14AYwf7jLyARikEFQ76kee+gBiE2l2EQE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 09 Jun 2025 08:35:08 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "mcyetm23yi"
+        },
+        {
+          "Name": "label",
+          "Value": "css/app.css.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-hSKYeCQUq+14AYwf7jLyARikEFQ76kee+gBiE2l2EQE="
+        }
+      ]
+    },
+    {
+      "Route": "index.html",
+      "AssetFile": "C:\\EPLAN\\SearchToolWPF\\WpfBlazorSearchTool\\obj\\Debug\\net9.0-windows\\compressed\\9007khu3x2-n09lemrsnz.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.002044989775"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "488"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"M+kieE4x1Ckyx+9bbISNEMt7Ms+wKW0k8AWoljemrd0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 06 Jun 2025 16:19:45 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"GUmXBM9yN9vJ6cRyjM9BvoXj079+YmZCboe2HOJ0BF0=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-GUmXBM9yN9vJ6cRyjM9BvoXj079+YmZCboe2HOJ0BF0="
+        }
+      ]
+    },
+    {
+      "Route": "index.html",
+      "AssetFile": "C:\\EPLAN\\SearchToolWPF\\WpfBlazorSearchTool\\wwwroot\\index.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "860"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"GUmXBM9yN9vJ6cRyjM9BvoXj079+YmZCboe2HOJ0BF0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 06 Jun 2025 16:19:45 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-GUmXBM9yN9vJ6cRyjM9BvoXj079+YmZCboe2HOJ0BF0="
+        }
+      ]
+    },
+    {
+      "Route": "index.html.gz",
+      "AssetFile": "C:\\EPLAN\\SearchToolWPF\\WpfBlazorSearchTool\\obj\\Debug\\net9.0-windows\\compressed\\9007khu3x2-n09lemrsnz.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "488"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"M+kieE4x1Ckyx+9bbISNEMt7Ms+wKW0k8AWoljemrd0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 06 Jun 2025 16:19:45 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-M+kieE4x1Ckyx+9bbISNEMt7Ms+wKW0k8AWoljemrd0="
+        }
+      ]
+    },
+    {
+      "Route": "index.n09lemrsnz.html",
+      "AssetFile": "C:\\EPLAN\\SearchToolWPF\\WpfBlazorSearchTool\\obj\\Debug\\net9.0-windows\\compressed\\9007khu3x2-n09lemrsnz.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.002044989775"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "488"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"M+kieE4x1Ckyx+9bbISNEMt7Ms+wKW0k8AWoljemrd0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 06 Jun 2025 16:19:45 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"GUmXBM9yN9vJ6cRyjM9BvoXj079+YmZCboe2HOJ0BF0=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "n09lemrsnz"
+        },
+        {
+          "Name": "label",
+          "Value": "index.html"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-GUmXBM9yN9vJ6cRyjM9BvoXj079+YmZCboe2HOJ0BF0="
+        }
+      ]
+    },
+    {
+      "Route": "index.n09lemrsnz.html",
+      "AssetFile": "C:\\EPLAN\\SearchToolWPF\\WpfBlazorSearchTool\\wwwroot\\index.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "860"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"GUmXBM9yN9vJ6cRyjM9BvoXj079+YmZCboe2HOJ0BF0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 06 Jun 2025 16:19:45 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "n09lemrsnz"
+        },
+        {
+          "Name": "label",
+          "Value": "index.html"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-GUmXBM9yN9vJ6cRyjM9BvoXj079+YmZCboe2HOJ0BF0="
+        }
+      ]
+    },
+    {
+      "Route": "index.n09lemrsnz.html.gz",
+      "AssetFile": "C:\\EPLAN\\SearchToolWPF\\WpfBlazorSearchTool\\obj\\Debug\\net9.0-windows\\compressed\\9007khu3x2-n09lemrsnz.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "488"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"M+kieE4x1Ckyx+9bbISNEMt7Ms+wKW0k8AWoljemrd0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 06 Jun 2025 16:19:45 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "n09lemrsnz"
+        },
+        {
+          "Name": "label",
+          "Value": "index.html.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-M+kieE4x1Ckyx+9bbISNEMt7Ms+wKW0k8AWoljemrd0="
+        }
+      ]
+    }
+  ]
+}

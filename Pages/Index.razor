@@ -1,0 +1,223 @@
+@page "/"
+@inject SearchService Searcher
+@implements IDisposable
+
+<div class="container-fluid p-4 compact-form">
+    <h3 class="mb-4">Remote/Local File Keyword Searcher</h3>
+
+    <EditForm Model="@_searchParameters" OnValidSubmit="StartSearch" @ref="_editForm">
+        <DataAnnotationsValidator />
+        
+        <div class="row">
+            <!-- Left Column: Search & Connection Settings -->
+            <div class="col-md-6">
+                <h5>Connection & Target</h5>
+                <hr />
+                <div class="mb-3">
+                    <label class="form-label">Target Machine IP Address (or 'localhost')</label>
+                    <InputText @bind-Value="_searchParameters.IpAddress" class="form-control" disabled="@_isSearching" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Username (leave empty if localhost)</label>
+                    <InputText @bind-Value="_searchParameters.Username" class="form-control" disabled="@_isSearching" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Password (leave empty if localhost)</label>
+                    <InputText type="password" @bind-Value="_searchParameters.Password" class="form-control" disabled="@_isSearching" />
+                </div>
+
+                <!-- Emphasized Keywords Section -->
+                <div class="p-3 mt-4 rounded" style="background-color: #f8f9fa;">
+                    <h5 class="mt-0">Search Keywords</h5>
+                    <hr />
+                    <DynamicListView Title="Keywords" Items="_searchParameters.Keywords" IsDisabled="@_isSearching" />
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="mt-4 d-grid">
+                    @if (_isSearching)
+                    {
+                        <button type="button" class="btn btn-danger" @onclick="StopSearch">
+                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                            <span> Stop Search</span>
+                        </button>
+                    }
+                    else
+                    {
+                        <button type="submit" class="btn btn-sm btn-outline-warning ms-1">
+                            <span>Start Search</span>
+                        </button>
+                    }
+                </div>
+            </div>
+
+            <!-- Right Column: Folders & Extensions -->
+            <div class="col-md-6">
+                <div class="form-check form-switch mb-4 mt-0">
+                    <InputCheckbox @bind-Value="_searchParameters.SearchSubdirectories" class="form-check-input" id="searchSubdirs" disabled="@_isSearching" />
+                    <label class="form-check-label" for="searchSubdirs">Search Subdirectories</label>
+                </div>
+
+                <div class="mb-3">
+                    <!-- VVVV --- LABEL CHANGE HERE --- VVVV -->
+                    <DynamicListView Title="Remote Folders" Items="_searchParameters.RemoteFolders" IsDisabled="@_isSearching" />
+                    <!-- ^^^^ --- END OF LABEL CHANGE --- ^^^^ -->
+                </div>
+                <div class="mb-3">
+                    <DynamicListView Title="Local Folders" Items="_searchParameters.LocalFolders" IsDisabled="@_isSearching" />
+                </div>
+                <div class="mb-3">
+                    <DynamicListView Title="File Extensions (include dot)" Items="_searchParameters.Extensions" IsDisabled="@_isSearching" />
+                </div>
+            </div>
+        </div>
+
+        <!-- Custom Validation Display -->
+        <div class="row mt-3">
+            <div class="col">
+                @if (_validationErrors.Any())
+                {
+                    <div class="alert alert-danger" role="alert">
+                        <h6 class="alert-heading">Please fix the following errors:</h6>
+                        <hr class="mt-2 mb-2">
+                        @foreach (var error in _validationErrors)
+                        {
+                            <p class="mb-0"> - @error</p>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+
+    </EditForm>
+
+    <!-- Progress & Results -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <h5>
+                Search Log
+                <button class="btn btn-sm btn-outline-secondary ms-2" @onclick="ToggleLog" title="Toggle Log Visibility">
+                    @(_showLog ? "Hide Log" : "Show Log")
+                </button>
+                <button class="btn btn-sm btn-outline-warning ms-1" @onclick="ClearLog" title="Clear Log">
+                    Clear Log
+                </button>
+            </h5>
+            <hr />
+
+            @if (_showLog)
+            {
+                <div class="bg-light p-3 rounded" style="height: 300px; overflow-y: scroll; font-family: Consolas, monospace; font-size: 0.9em; white-space: pre-wrap;">
+                    @foreach (var msg in _statusMessages)
+                    {
+                        if (msg.StartsWith("[!]"))
+                        {
+                            <div class="text-danger">@msg</div>
+                        }
+                        else if (msg.StartsWith("[i]"))
+                        {
+                            <div class="text-warning">@msg</div>
+                        }
+                        else if (msg.StartsWith("✅") || msg.StartsWith("    FOUND"))
+                        {
+                            <div class="text-success">@msg</div>
+                        }
+                        else
+                        {
+                            <div>@msg</div>
+                        }
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@code {
+    private SearchParameters _searchParameters = new SearchParameters();
+    private bool _isSearching = false;
+    private bool _showLog = false;
+    private List<string> _statusMessages = new List<string>();
+    private Progress<string>? _progressReporter;
+    private CancellationTokenSource? _cancellationTokenSource;
+
+    // For custom validation display
+    private EditForm? _editForm;
+    private List<string> _validationErrors = new List<string>();
+
+    protected override void OnInitialized()
+    {
+        _progressReporter = new Progress<string>(message =>
+        {
+            _statusMessages.Add(message);
+            InvokeAsync(StateHasChanged);
+        });
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender && _editForm?.EditContext != null)
+        {
+            _editForm.EditContext.OnValidationStateChanged += HandleValidationStateChanged;
+        }
+    }
+
+    private void HandleValidationStateChanged(object? sender, ValidationStateChangedEventArgs e)
+    {
+        _validationErrors.Clear();
+        if (_editForm?.EditContext != null)
+        {
+            _validationErrors.AddRange(_editForm.EditContext.GetValidationMessages());
+        }
+        
+        StateHasChanged();
+    }
+
+    private async Task StartSearch()
+    {
+        _validationErrors.Clear();
+
+        _isSearching = true;
+        _showLog = true;
+        _statusMessages.Clear();
+        _cancellationTokenSource = new CancellationTokenSource();
+
+        await InvokeAsync(StateHasChanged);
+
+        try
+        {
+            await Searcher.ExecuteSearchAsync(_searchParameters, _progressReporter!, _cancellationTokenSource.Token);
+        }
+        finally
+        {
+            _isSearching = false;
+            _cancellationTokenSource.Dispose();
+            _cancellationTokenSource = null;
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+
+    private void StopSearch()
+    {
+        _cancellationTokenSource?.Cancel();
+    }
+
+    private void ToggleLog()
+    {
+        _showLog = !_showLog;
+    }
+
+    private void ClearLog()
+    {
+        _statusMessages.Clear();
+    }
+
+    public void Dispose()
+    {
+        if (_editForm?.EditContext != null)
+        {
+            _editForm.EditContext.OnValidationStateChanged -= HandleValidationStateChanged;
+        }
+        _cancellationTokenSource?.Dispose();
+    }
+}

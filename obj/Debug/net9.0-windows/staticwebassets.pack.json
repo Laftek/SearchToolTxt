@@ -1,0 +1,33 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\EPLAN\\SearchToolWPF\\WpfBlazorSearchTool\\wwwroot\\css\\app.css",
+      "PackagePath": "staticwebassets\\css\\app.css"
+    },
+    {
+      "Id": "C:\\EPLAN\\SearchToolWPF\\WpfBlazorSearchTool\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0-windows\\staticwebassets\\msbuild.WpfBlazorSearchTool.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0-windows\\staticwebassets\\msbuild.WpfBlazorSearchTool.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0-windows\\staticwebassets\\msbuild.build.WpfBlazorSearchTool.props",
+      "PackagePath": "build\\WpfBlazorSearchTool.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0-windows\\staticwebassets\\msbuild.buildMultiTargeting.WpfBlazorSearchTool.props",
+      "PackagePath": "buildMultiTargeting\\WpfBlazorSearchTool.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0-windows\\staticwebassets\\msbuild.buildTransitive.WpfBlazorSearchTool.props",
+      "PackagePath": "buildTransitive\\WpfBlazorSearchTool.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

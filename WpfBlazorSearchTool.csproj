@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebView.Wpf" Version="9.0.70" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.2" />
     
   </ItemGroup>
 

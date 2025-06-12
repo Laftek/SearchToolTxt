@@ -12,13 +12,13 @@ namespace WpfBlazorSearchTool.Services
         public List<string> RemoteFolders { get; set; } = new List<string> { @"C:\HMI" };
 
         [ListMustContainElements(nameof(IsLocalSearch), true, ErrorMessage = "At least one local folder must be provided for a local search.")]
-        public List<string> LocalFolders { get; set; } = new List<string> { @"C:\Temp", @"C:\Temp1" };
+        public List<string> LocalFolders { get; set; } = new List<string> { @"C:\Temp" };
 
         [ListMustContainElements(ErrorMessage = "At least one file extension must be provided.")]
-        public List<string> Extensions { get; set; } = new List<string> { ".txt", ".ini", ".csv", ".log", ".config" };
+        public List<string> Extensions { get; set; } = new List<string> { ".ini", ".csv", ".config" };
 
         [ListMustContainElements(ErrorMessage = "At least one keyword must be provided.")]
-        public List<string> Keywords { get; set; } = new List<string> { "error", "timeout", "connection", "failed" };
+        public List<string> Keywords { get; set; } = new List<string> { "RCP-MMD-LR_ConRecipeNameMA1" };
 
         public string Username { get; set; } = @".\hmi-plc-user";
 

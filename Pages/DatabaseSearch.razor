@@ -1,0 +1,208 @@
+@page "/database-search"
+@inject DatabaseSearchService DbSearcher
+@implements IDisposable
+
+<div class="container-fluid p-4 compact-form">
+    <h3>Database Keyword & Column Searcher</h3>
+
+    <EditForm Model="@_dbParameters" OnValidSubmit="StartDbSearch" @ref="_editForm">
+        <DataAnnotationsValidator />
+        
+        <div class="row">
+            <!-- Left Column: Connection & Actions -->
+            <div class="col-md-6">
+                <h5>SQL Server Connection</h5>
+                <hr />
+                <div class="mb-3">
+                    <label class="form-label">Server IP or Name (use 'localhost' for local)</label>
+                    <InputText @bind-Value="_dbParameters.ServerIp" class="form-control" disabled="@_isSearching" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">User ID</label>
+                    <InputText @bind-Value="_dbParameters.UserId" class="form-control" disabled="@_isSearching" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Password</label>
+                    <InputText type="password" @bind-Value="_dbParameters.Password" class="form-control" disabled="@_isSearching" />
+                </div>
+                
+                <!-- Action Buttons -->
+                <div class="mt-4 d-grid gap-2">
+                    @if (_isSearching)
+                    {
+                        <button type="button" class="btn btn-danger" @onclick="StopDbSearch">
+                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                            <span> Stop Search</span>
+                        </button>
+                    }
+                    else
+                    {
+                        <button type="submit" class="btn btn-primary">
+                            <span>Start Database Search</span>
+                        </button>
+                    }
+                </div>
+            </div>
+
+            <!-- Right Column: Search Types -->
+            <div class="col-md-6">
+                <div class="p-3 mb-3 rounded" style="background-color: #f8f9fa;">
+                    <h5 class="mt-0">Column Name Search</h5>
+                    <hr />
+                    <div class="form-check form-switch mb-2">
+                        <InputCheckbox @bind-Value="_dbParameters.PerformColumnSearch" class="form-check-input" id="performColumnSearch" disabled="@_isSearching" />
+                        <label class="form-check-label" for="performColumnSearch">Enable Column Name Search (Exact Match)</label>
+                    </div>
+                    <DynamicListView Title="Column Names to Find" Items="_dbParameters.ColumnNamesToSearch" IsDisabled="@(!_dbParameters.PerformColumnSearch || _isSearching)" />
+                </div>
+                
+                <div class="p-3 rounded" style="background-color: #f8f9fa;">
+                    <h5 class="mt-0">Keyword Data Search</h5>
+                    <hr />
+                    <div class="form-check form-switch mb-2">
+                        <InputCheckbox @bind-Value="_dbParameters.PerformKeywordDataSearch" class="form-check-input" id="performKeywordSearch" disabled="@_isSearching" />
+                        <label class="form-check-label" for="performKeywordSearch">Enable Keyword Search in Table Data</label>
+                    </div>
+                     <div class="mb-2">
+                        <label class="form-label">Search Mode</label>
+                        <InputSelect @bind-Value="_dbParameters.KeywordSearchMode" class="form-select form-select-sm" disabled="@(!_dbParameters.PerformKeywordDataSearch || _isSearching)">
+                            @foreach (var mode in Enum.GetValues<KeywordSearchMode>())
+                            {
+                                <option value="@mode">@mode</option>                            }
+                        </InputSelect>
+                    </div>
+                    <DynamicListView Title="Keywords to Find" Items="_dbParameters.KeywordsToSearchData" IsDisabled="@(!_dbParameters.PerformKeywordDataSearch || _isSearching)" />
+                </div>
+            </div>
+        </div>
+        
+        <!-- VVVV --- NEW CUSTOM VALIDATION DISPLAY --- VVVV -->
+        <div class="row mt-3">
+            <div class="col">
+                @if (_validationErrors.Any())
+                {
+                    <div class="alert alert-danger" role="alert">
+                        <h6 class="alert-heading">Please fix the following errors:</h6>
+                        <hr class="mt-2 mb-2">
+                        @foreach (var error in _validationErrors)
+                        {
+                            <p class="mb-0"> - @error</p>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+        <!-- ^^^^ --- END OF NEW VALIDATION DISPLAY --- ^^^^ -->
+
+    </EditForm>
+
+     <!-- Log Area -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <h5>
+                Search Log
+                <button class="btn btn-sm btn-outline-secondary ms-2" @onclick="() => _showLog = !_showLog">@(_showLog ? "Hide" : "Show")</button>
+                <button class="btn btn-sm btn-outline-warning ms-1" @onclick="() => _statusMessages.Clear()">Clear</button>
+            </h5>
+            <hr />
+            @if (_showLog)
+            {
+                <div class="bg-light p-3 rounded" style="height: 300px; overflow-y: scroll; font-family: Consolas, monospace; font-size: 0.9em; white-space: pre-wrap;">
+                    @foreach (var msg in _statusMessages)
+                    {
+                        @if (msg.StartsWith("[!]")) { <div class="text-danger">@msg</div> }
+                        else if (msg.StartsWith("[i]")) { <div class="text-warning">@msg</div> }
+																								
+                        else if (msg.StartsWith("✅") || msg.StartsWith("    FOUND")) { <div class="text-success">@msg</div> }
+                        else { <div>@msg</div> }
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@code {
+    private DatabaseSearchParameters _dbParameters = new();
+    private bool _isSearching = false;
+    private bool _showLog = false;
+    private List<string> _statusMessages = new();
+    private CancellationTokenSource? _cancellationTokenSource;
+    private Progress<string>? _progressReporter;
+
+    // VVVV --- NEW CODE FOR CUSTOM VALIDATION --- VVVV
+    private EditForm? _editForm;
+    private List<string> _validationErrors = new List<string>();
+
+    protected override void OnInitialized()
+    {
+        _progressReporter = new Progress<string>(message =>
+        {
+            _statusMessages.Add(message);
+            InvokeAsync(StateHasChanged);
+        });
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        // Subscribe to the validation state changed event once the EditForm is rendered
+        if (firstRender && _editForm?.EditContext != null)
+        {
+            _editForm.EditContext.OnValidationStateChanged += HandleValidationStateChanged;
+        }
+    }
+
+    private void HandleValidationStateChanged(object? sender, ValidationStateChangedEventArgs e)
+    {
+        // This method is called whenever validation runs
+        _validationErrors.Clear();
+        if (_editForm?.EditContext != null)
+        {
+            // Get all validation messages and add them to our list
+            _validationErrors.AddRange(_editForm.EditContext.GetValidationMessages());
+        }
+        
+        // Tell Blazor to re-render the component to show/hide the error box
+        StateHasChanged();
+    }
+    // ^^^^ --- END OF NEW VALIDATION CODE --- ^^^^
+
+    private async Task StartDbSearch()
+    {
+        // Clear old errors when starting a new search
+        _validationErrors.Clear();
+
+        _isSearching = true;
+        _showLog = true;
+        _statusMessages.Clear();
+        _cancellationTokenSource = new CancellationTokenSource();
+        await InvokeAsync(StateHasChanged);
+
+        try
+        {
+            await DbSearcher.ExecuteSearchAsync(_dbParameters, _progressReporter!, _cancellationTokenSource.Token);
+        }
+        finally
+        {
+            _isSearching = false;
+            _cancellationTokenSource.Dispose();
+            _cancellationTokenSource = null;
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+
+    private void StopDbSearch()
+    {
+        _cancellationTokenSource?.Cancel();
+    }
+
+    public void Dispose()
+    {
+        // Unsubscribe from the event to prevent memory leaks when the component is destroyed
+        if (_editForm?.EditContext != null)
+        {
+            _editForm.EditContext.OnValidationStateChanged -= HandleValidationStateChanged;
+        }
+        _cancellationTokenSource?.Dispose();
+    }
+}

@@ -7,13 +7,56 @@
         xmlns:local="clr-namespace:WpfBlazorSearchTool"
         mc:Ignorable="d"
         xmlns:pages="clr-namespace:WpfBlazorSearchTool.Pages"
-        Title="Remote/Local File Search Tool" Height="800" Width="1200">
+        Title="File Database Search Tool" Height="800" Width="1200">
+    
+    <Window.Resources>
+        <Style TargetType="{x:Type TabControl}" BasedOn="{StaticResource {x:Type TabControl}}">
+            <Setter Property="Padding" Value="5"/>
+        </Style>
+        <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource {x:Type TabItem}}">
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TabItem}">
+                        <Border Name="Border" BorderThickness="1,1,1,0" BorderBrush="Gainsboro" CornerRadius="4,4,0,0" Margin="2,0">
+                            <ContentPresenter x:Name="ContentSite"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        ContentSource="Header"
+                                        Margin="12,2,12,2"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="White" />
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="False">
+                                <Setter TargetName="Border" Property="Background" Value="LightGray" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    
     <Grid>
-        <blazor:BlazorWebView x:Name="blazorWebView" HostPage="wwwroot\index.html" Services="{DynamicResource services}">
-            <blazor:BlazorWebView.RootComponents>
-                <!-- This now correctly points to your Index.razor page -->
-                <blazor:RootComponent Selector="#app" ComponentType="{x:Type pages:Index}" />
-            </blazor:BlazorWebView.RootComponents>
-        </blazor:BlazorWebView>
+        <TabControl TabStripPlacement="Top">
+            <TabItem Header="Keyword Search">
+                <blazor:BlazorWebView HostPage="wwwroot\index.html" Services="{DynamicResource services}">
+                    <blazor:BlazorWebView.RootComponents>
+                        <blazor:RootComponent Selector="#app" ComponentType="{x:Type pages:Index}" />
+                    </blazor:BlazorWebView.RootComponents>
+                </blazor:BlazorWebView>
+            </TabItem>
+
+            <TabItem Header="Database Search">
+                <blazor:BlazorWebView HostPage="wwwroot\index.html" Services="{DynamicResource services}">
+                    <blazor:BlazorWebView.RootComponents>
+                        <blazor:RootComponent Selector="#app" ComponentType="{x:Type pages:DatabaseSearch}" />
+                    </blazor:BlazorWebView.RootComponents>
+                </blazor:BlazorWebView>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>

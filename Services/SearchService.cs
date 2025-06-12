@@ -239,7 +239,7 @@ namespace WpfBlazorSearchTool.Services
                                             Keyword = keyword,
                                             LineText = line.Trim()
                                         });
-                                        progress.Report($"    FOUND: Keyword '{keyword}' in {file} (Line: {lineNumber})");
+                                        progress.Report($"    ✅ FOUND: Keyword '{keyword}' in {file} (Line: {lineNumber})");
                                     }
                                 }
                             }

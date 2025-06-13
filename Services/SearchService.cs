@@ -210,7 +210,7 @@ namespace WpfBlazorSearchTool.Services
             }
         }
         
-        // RecursiveFileSearch and SaveResults methods are unchanged...
+        // RecursiveFileSearch method is unchanged...
         private void RecursiveFileSearch(string currentDirectory, SearchParameters parameters, List<SearchResult> foundResults, IProgress<string> progress, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
@@ -291,6 +291,8 @@ namespace WpfBlazorSearchTool.Services
                 }
             }
         }
+
+        // VVVV --- ONLY THIS METHOD IS CHANGED --- VVVV
         private void SaveResults(List<SearchResult> results, SearchParameters parameters, IProgress<string> progress)
         {
             string defaultFileName = parameters.IsLocalSearch
@@ -307,20 +309,30 @@ namespace WpfBlazorSearchTool.Services
 
             try
             {
-                var csvLines = new List<string> { "\"File\";\"Line\";\"Keyword\";\"Text\"" };
+                var csvLines = new List<string>
+                {
+                    // This first line is a hint for Excel to use semicolons as separators.
+                    "sep=;",
+                    // This is the actual header row.
+                    "\"File\";\"Line\";\"Keyword\";\"Text\""
+                };
+
                 foreach (var res in results)
                 {
+                    // This part remains the same, as it correctly builds the semicolon-separated line.
                     string escapedLineText = res.LineText.Replace("\"", "\"\"");
                     csvLines.Add($"\"{res.FilePath}\";{res.LineNumber};\"{res.Keyword}\";\"{escapedLineText}\"");
                 }
+                
                 File.WriteAllLines(savePath, csvLines, Encoding.UTF8);
-                progress.Report($"✅ Results saved to: {savePath}");
+                progress.Report($"💾 Results saved to: {savePath}");
             }
             catch (Exception ex)
             {
                 progress.Report($"[!] Failed to write CSV file: {ex.Message}");
             }
         }
+        // ^^^^ --- END OF CHANGES --- ^^^^
         
         #region NativeMethods (P/Invoke) - Unchanged
         private static class NativeMethods
